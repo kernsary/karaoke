@@ -10,8 +10,8 @@ class SongTest < MiniTest::Test
 
   end
 
-  def test_song_name
-    assert_equal("My Way", @song_1.name)
+  def test_get_song_title
+    assert_equal("My Way", @song_1.title)
   end
 
 end
