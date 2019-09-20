@@ -18,6 +18,10 @@ class Room
     return @guests
   end
 
+  def add_song(song)
+    @songs.push(song)
+  end
+
   def check_guest_in(guest)
     @guests.push(guest)
   end
