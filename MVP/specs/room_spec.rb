@@ -9,9 +9,9 @@ class RoomTest < MiniTest::Test
   def setup
 
 
-    @song_1 = "Movin' On Up"
-    @song_2 = "Song 2"
-    @song_3 = "My Way"
+    @song_1 = Song.new("Movin' On Up")
+    @song_2 = Song.new("Song 2")
+    @song_3 = Song.new("My Way")
 
     @songs = [@song_1, @song_2]
 
