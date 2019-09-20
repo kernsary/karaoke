@@ -20,7 +20,7 @@ class RoomTest < MiniTest::Test
     @guest_3 = Guest.new("Paul")
     @guest_4 = Guest.new("Julianne")
 
-    @guests = [@guest_1, @guest_2, @guest_3, @guest_4]
+    @guests = [@guest_1, @guest_2, @guest_3]
 
     @room_1 = Room.new("Sinatra", @songs, @guests)
 
@@ -30,6 +30,19 @@ class RoomTest < MiniTest::Test
   def test_get_room_name
     assert_equal("Sinatra", @room_1.name)
   end
+
+  def test_get_songs
+    assert_equal(@songs,   @room_1.get_songs)
+  end
+
+  def test_get_guests
+    assert_equal(@guests,   @room_1.get_guests)
+  end
+
+  # def test_can_check_guest_in
+  #   @room_1.check_in_guest(@guest_4)
+  #   assert()
+  # end
 
 
 end
