@@ -16,8 +16,9 @@ class VenueTest < MiniTest::Test
 
     @guest_1 = Guest.new("Frank", 100)
     @guest_2 = Guest.new("Jodie", 80)
-    @guest_3 = Guest.new("Paul", 40)
+    @guest_3 = Guest.new("Paul", 80)
     @guest_4 = Guest.new("Julianne", 120)
+    @guest_5 = Guest.new("Suzanne", 60)
 
     @guests = [@guest_1, @guest_2, @guest_3]
 
@@ -53,7 +54,7 @@ class VenueTest < MiniTest::Test
   end
 
   def test_can_get_venue_till
-assert_equal(1000, @venue.venue_till)
+    assert_equal(1000, @venue.venue_till)
   end
 
   def test_can_add_song_to_list
@@ -71,6 +72,11 @@ assert_equal(1000, @venue.venue_till)
     assert_equal(1, @room_1.get_guests.count)
     assert_equal(1010, @venue.venue_till)
     assert_equal(90, @guest_1.wallet)
+  end
+
+  def test_can_check_guest_into_room__guest_has_no_money
+    poor_guest = Guest.new("Joe", 5)
+    assert_equal("Sorry, you don't have enough money.", @venue.check_guest_into_room(poor_guest, @room_1))
   end
 
 end
