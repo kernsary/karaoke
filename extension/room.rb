@@ -30,9 +30,14 @@ class Room
   def check_guest_out(guest)
     @room_guests.delete(guest)
   end
-  
+
   def at_capacity?
     return get_guests.count >= @capacity
+  end
+
+  def reset_room
+    @room_songs = []
+    @room_guests = []
   end
 
 end

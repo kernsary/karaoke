@@ -70,6 +70,12 @@ class RoomTest < MiniTest::Test
     refute(@room_1.at_capacity?)
   end
 
+  def test_can_reset_room
+    @room_1.reset_room
+    assert_equal([], @room_1.get_songs)
+    assert_equal([], @room_1.get_guests)
+  end
+
 
 
 end
