@@ -1,35 +1,34 @@
 class Room
 
-  attr_reader :name, :capacity, :at_capacity
+  attr_reader :name, :capacity
 
   def initialize(name, capacity)
 
     @name = name
     @capacity = capacity
-    @songs = []
-    @guests = []
-    @at_capacity = false
+    @room_songs = []
+    @room_guests = []
 
   end
 
   def get_songs
-    return @songs
+    return @room_songs
   end
 
   def get_guests
-    return @guests
+    return @room_guests
   end
 
-  def add_song(song)
-    @songs.push(song)
+  def add_songs(songs)
+    songs.each{|song| @room_songs.push(song)}
   end
 
   def check_guest_in(guest)
-    @guests.push(guest)
+    @room_guests.push(guest)
   end
 
   def check_guest_out(guest)
-    @guests.delete(guest)
+    @room_guests.delete(guest)
   end
 
 end

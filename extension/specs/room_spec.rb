@@ -12,7 +12,7 @@ class RoomTest < MiniTest::Test
     @song_2 = Song.new("Song 2")
     @song_3 = Song.new("My Way")
 
-    @songs = [@song_1, @song_2]
+    @venue_songs = [@song_1, @song_2, @song_3]
 
     @guest_1 = Guest.new("Frank")
     @guest_2 = Guest.new("Jodie")
@@ -34,16 +34,28 @@ class RoomTest < MiniTest::Test
     assert_equal(4, @room_1.capacity)
   end
 
-  # def test_get_songs
-  #   assert_equal(@songs,   @room_1.get_songs)
-  # end
-  #
-  # def test_get_guests
-  #   assert_equal(@guests,   @room_1.get_guests)
-  # end
+  def test_get_songs
+    assert_equal([], @room_1.get_songs)
+  end
 
-  def test_check_if_at_capacity__false
-    refute(@at_capacity)
+  def test_get_guests
+    assert_equal([],   @room_1.get_guests)
+  end
+
+  def test_can_add_songs_to_room
+    @room_1.add_songs(@venue_songs)
+    assert_equal(3, @room_1.get_songs.count)
+  end
+
+  def test_can_check_guest_in
+    @room_1.check_guest_in(@guest_1)
+    assert_equal(1, @room_1.get_guests.count)
+  end
+
+  def test_can_check_guest_out
+    @room_1.check_guest_in(@guest_1)
+    @room_1.check_guest_out(@guest_1)
+    assert_equal(0, @room_1.get_guests.count)
   end
 
 
