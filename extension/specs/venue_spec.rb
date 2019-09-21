@@ -14,10 +14,10 @@ class VenueTest < MiniTest::Test
 
     @venue_songs_1 = [@song_1, @song_2]
 
-    @guest_1 = Guest.new("Frank")
-    @guest_2 = Guest.new("Jodie")
-    @guest_3 = Guest.new("Paul")
-    @guest_4 = Guest.new("Julianne")
+    @guest_1 = Guest.new("Frank", 100)
+    @guest_2 = Guest.new("Jodie", 80)
+    @guest_3 = Guest.new("Paul", 40)
+    @guest_4 = Guest.new("Julianne", 120)
 
     @guests = [@guest_1, @guest_2, @guest_3]
 
@@ -27,7 +27,7 @@ class VenueTest < MiniTest::Test
 
     @rooms = [@room_1, @room_2]
 
-    @venue = Venue.new("CCC", @rooms, @venue_songs_1)
+    @venue = Venue.new("CCC", @rooms, @venue_songs_1, 10)
 
   end
 
@@ -46,6 +46,9 @@ class VenueTest < MiniTest::Test
 
   def test_can_get_guests
     assert_equal([], @venue.get_guests)
+  end
+
+  def test_can_get_entrance_charge
   end
 
   def test_can_add_song_to_list
