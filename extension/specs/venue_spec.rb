@@ -12,7 +12,7 @@ class VenueTest < MiniTest::Test
     @song_2 = "Song 2"
     @song_3 = "My Way"
 
-    @songs = [@song_1, @song_2]
+    @venue_songs_1 = [@song_1, @song_2]
 
     @guest_1 = Guest.new("Frank")
     @guest_2 = Guest.new("Jodie")
@@ -27,13 +27,31 @@ class VenueTest < MiniTest::Test
 
     @rooms = [@room_1, @room_2]
 
-    @venue = Venue.new("CCC", @rooms, @songs)
+    @venue = Venue.new("CCC", @rooms, @venue_songs_1)
 
   end
 
   def test_can_get_name
     assert_equal("CCC", @venue.name)
   end
+
+  def test_can_get_rooms
+    assert_equal(2, @venue.get_rooms.count)
+  end
+
+
+  def test_can_get_songs
+    assert_equal(2, @venue.get_songs.count)
+  end
+
+  def test_can_get_guests
+assert_equal([], @venue.get_guests)
+  end
+
+  # def test_can_add_song_to_list
+  #   @venue.add_song_to_list(@song_3)
+  #   assert_equal(3, )
+  # end
 
 
 end
