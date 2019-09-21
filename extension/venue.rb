@@ -33,4 +33,16 @@ class Venue
     room.add_song(song)
   end
 
+  def check_guest_into_room(guest, room)
+    if guest.wallet < @entrance_charge
+      return "Sorry, you don't have enough money."
+    end
+    if room.at_capacity?
+      return "Sorry, #{room} is full."
+    end
+    room.check_guest_in(guest)
+    @venue_till += @entrance_charge
+    guest.guest_pays(@entrance_charge)
+  end
+
 end

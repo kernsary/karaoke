@@ -66,10 +66,11 @@ assert_equal(1000, @venue.venue_till)
     assert_equal(1, @room_1.get_songs.count)
   end
 
-  # def test_can_check_guest_into_room
-  #   @venue.check_guest_in(@guest_1, @room_1)
-  #   assert_equal(1, @room_1.get_guests.count)
-  #   assert_equal(10)
-  # end
+  def test_can_check_guest_into_room__room_has_space_and_guest_has_money
+    @venue.check_guest_into_room(@guest_1, @room_1)
+    assert_equal(1, @room_1.get_guests.count)
+    assert_equal(1010, @venue.venue_till)
+    assert_equal(90, @guest_1.wallet)
+  end
 
 end
