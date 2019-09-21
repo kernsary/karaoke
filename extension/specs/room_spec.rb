@@ -58,6 +58,18 @@ class RoomTest < MiniTest::Test
     assert_equal(0, @room_1.get_guests.count)
   end
 
+  def test_if_room_is_at_capacity__true
+    @room_1.check_guest_in(@guest_1)
+    @room_1.check_guest_in(@guest_2)
+    @room_1.check_guest_in(@guest_3)
+    @room_1.check_guest_in(@guest_4)
+    assert(@room_1.at_capacity?)
+  end
+
+  def test_if_room_is_at_capacity__false
+    refute(@room_1.at_capacity?)
+  end
+
 
 
 end
