@@ -45,13 +45,13 @@ class VenueTest < MiniTest::Test
   end
 
   def test_can_get_guests
-assert_equal([], @venue.get_guests)
+    assert_equal([], @venue.get_guests)
   end
 
-  # def test_can_add_song_to_list
-  #   @venue.add_song_to_list(@song_3)
-  #   assert_equal(3, )
-  # end
+  def test_can_add_song_to_list
+    @venue.add_song_to_list(@song_3)
+    assert_equal(3, @venue.get_songs.count)
+  end
 
 
 end

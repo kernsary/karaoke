@@ -20,7 +20,11 @@ class Venue
   end
 
   def get_guests
-return @guests
+    return @guests
+  end
+
+  def add_song_to_list(song)
+    @venue_songs.push(song)
   end
 
 end
