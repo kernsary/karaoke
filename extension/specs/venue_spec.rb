@@ -53,5 +53,9 @@ class VenueTest < MiniTest::Test
     assert_equal(3, @venue.get_songs.count)
   end
 
+  def test_can_add_song_to_room
+    @venue.add_song_to_room(@room_1, @song_1)
+    assert_equal(1, @room_1.get_songs.count)
+  end
 
 end

@@ -19,8 +19,8 @@ class Room
     return @room_guests
   end
 
-  def add_songs(songs)
-    songs.each{|song| @room_songs.push(song)}
+  def add_song(song)
+    @room_songs.push(song)
   end
 
   def check_guest_in(guest)
