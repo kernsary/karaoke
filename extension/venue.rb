@@ -1,13 +1,14 @@
 class Venue
 
-  attr_reader :name, :entrance_charge
+  attr_reader :name, :entrance_charge, :venue_till
 
-  def initialize(name, rooms, songs, entrance_charge)
+  def initialize(name, rooms, songs, entrance_charge, venue_till)
 
     @name = name#
     @rooms = rooms
     @venue_songs = songs
     @entrance_charge = entrance_charge
+    @venue_till = venue_till
     @guests = []
 
   end

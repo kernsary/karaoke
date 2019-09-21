@@ -27,7 +27,7 @@ class VenueTest < MiniTest::Test
 
     @rooms = [@room_1, @room_2]
 
-    @venue = Venue.new("CCC", @rooms, @venue_songs_1, 10)
+    @venue = Venue.new("CCC", @rooms, @venue_songs_1, 10, 1000)
 
   end
 
@@ -49,6 +49,11 @@ class VenueTest < MiniTest::Test
   end
 
   def test_can_get_entrance_charge
+    assert_equal(10, @venue.entrance_charge)
+  end
+
+  def test_can_get_venue_till
+assert_equal(1000, @venue.venue_till)
   end
 
   def test_can_add_song_to_list
@@ -60,5 +65,11 @@ class VenueTest < MiniTest::Test
     @venue.add_song_to_room(@room_1, @song_1)
     assert_equal(1, @room_1.get_songs.count)
   end
+
+  # def test_can_check_guest_into_room
+  #   @venue.check_guest_in(@guest_1, @room_1)
+  #   assert_equal(1, @room_1.get_guests.count)
+  #   assert_equal(10)
+  # end
 
 end
