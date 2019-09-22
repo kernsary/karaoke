@@ -1,19 +1,20 @@
 class Room
 
-  attr_reader :name, :capacity
+  attr_reader :name, :capacity, :till
 
-  def initialize(name, capacity, drinks)
+  def initialize(name, capacity, drinks, till)
 
     @name = name
     @capacity = capacity
     @drinks = drinks
+    @till = till
     @room_songs = []
     @room_guests = []
 
   end
 
   def get_drinks
-    return @drinks    
+    return @drinks
   end
 
   def get_songs
@@ -52,6 +53,14 @@ class Room
         guest.guest_cheers
       end
     end
+  end
+
+  def guest_wants_drink(guest,drink)
+    if guest.wallet < drink.price
+      return "Sorry, you don't have enough money"
+    end
+    guest.guest_pays(drink.price)
+    @till += drink.price
   end
 
 end

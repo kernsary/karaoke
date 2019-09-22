@@ -28,7 +28,7 @@ class RoomTest < MiniTest::Test
 
     @drinks = [@drink_1, @drink_2]
 
-    @room_1 = Room.new("Sinatra", 4, @drinks)
+    @room_1 = Room.new("Sinatra", 4, @drinks, 500)
 
 
   end
@@ -43,6 +43,10 @@ class RoomTest < MiniTest::Test
 
   def test_get_drinks
     assert_equal(@drinks, @room_1.get_drinks)
+  end
+
+  def test_get_till
+    assert_equal(500, @room_1.till)
   end
 
   def test_get_songs
@@ -96,6 +100,12 @@ class RoomTest < MiniTest::Test
     assert(@guest_1.cheers)
     assert(@guest_2.cheers)
     refute(@guest_3.cheers)
+  end
+
+  def test_guest_can_buy_drink__enough_money
+    @room_1.check_guest_in(@guest_1)
+    @room_1.guest_wants_drink(@guest_1, @drink_1)
+    assert_equal(95, @guest_1.wallet)
   end
 
 
