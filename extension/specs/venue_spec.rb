@@ -79,4 +79,12 @@ class VenueTest < MiniTest::Test
     assert_equal("Sorry, you don't have enough money.", @venue.check_guest_into_room(poor_guest, @room_1))
   end
 
+  def test_can_check_guest_into_room__room_is_full
+    @venue.check_guest_into_room(@guest_1, @room_1)
+    @venue.check_guest_into_room(@guest_2, @room_1)
+    @venue.check_guest_into_room(@guest_3, @room_1)
+    @venue.check_guest_into_room(@guest_4, @room_1)
+    assert_equal("Sorry, Sinatra is full.", @venue.check_guest_into_room(@guest_5, @room_1))
+  end
+
 end

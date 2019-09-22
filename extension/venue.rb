@@ -38,7 +38,7 @@ class Venue
       return "Sorry, you don't have enough money."
     end
     if room.at_capacity?
-      return "Sorry, #{room} is full."
+      return "Sorry, #{room.name} is full."
     end
     room.check_guest_in(guest)
     @venue_till += @entrance_charge
