@@ -2,13 +2,18 @@ class Room
 
   attr_reader :name, :capacity
 
-  def initialize(name, capacity)
+  def initialize(name, capacity, drinks)
 
     @name = name
     @capacity = capacity
+    @drinks = drinks
     @room_songs = []
     @room_guests = []
 
+  end
+
+  def get_drinks
+    return @drinks    
   end
 
   def get_songs

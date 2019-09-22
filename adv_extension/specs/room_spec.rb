@@ -3,6 +3,7 @@ require('minitest/rg')
 require_relative('../room.rb')
 require_relative('../guest.rb')
 require_relative('../song.rb')
+require_relative('../drink.rb')
 
 class RoomTest < MiniTest::Test
 
@@ -22,7 +23,12 @@ class RoomTest < MiniTest::Test
 
     @guests = [@guest_1, @guest_2, @guest_3]
 
-    @room_1 = Room.new("Sinatra", 4)
+    @drink_1 = Drink.new("Lager", 5)
+    @drink_2 = Drink.new("Gin", 4)
+
+    @drinks = [@drink_1, @drink_2]
+
+    @room_1 = Room.new("Sinatra", 4, @drinks)
 
 
   end
@@ -33,6 +39,10 @@ class RoomTest < MiniTest::Test
 
   def test_get_capacity
     assert_equal(4, @room_1.capacity)
+  end
+
+  def test_get_drinks
+    assert_equal(@drinks, @room_1.get_drinks)
   end
 
   def test_get_songs
