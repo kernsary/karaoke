@@ -3,6 +3,7 @@ require('minitest/rg')
 require_relative('../venue.rb')
 require_relative('../room.rb')
 require_relative('../guest.rb')
+require_relative('../drink.rb')
 
 class VenueTest < MiniTest::Test
 
@@ -22,9 +23,13 @@ class VenueTest < MiniTest::Test
 
     @guests = [@guest_1, @guest_2, @guest_3]
 
+    @drink_1 = Drink.new("Lager", 5)
+    @drink_2 = Drink.new("Gin", 4)
 
-    @room_1 = Room.new("Sinatra", 4)
-    @room_2 = Room.new("Nina", 6)
+    @drinks = [@drink_1, @drink_2]
+
+    @room_1 = Room.new("Sinatra", 4, @drinks, 500)
+    @room_2 = Room.new("Nina", 6, @drinks, 700)
 
     @rooms = [@room_1, @room_2]
 
@@ -75,7 +80,7 @@ class VenueTest < MiniTest::Test
   end
 
   def test_can_check_guest_into_room__guest_has_no_money
-    poor_guest = Guest.new("Joe", 5)
+    poor_guest = Guest.new("Joe", 5, "I Will Survive")
     assert_equal("Sorry, you don't have enough money.", @venue.check_guest_into_room(poor_guest, @room_1))
   end
 
@@ -91,6 +96,24 @@ class VenueTest < MiniTest::Test
     @venue.check_guest_into_room(@guest_1, @room_1)
     @venue.check_guest_out_of_room(@guest_1, @room_1)
     assert_equal(0, @room_1.get_guests.count)
+  end
+
+  def test_can_reset_room
+    @venue.check_guest_into_room(@guest_1, @room_1)
+    @venue.add_song_to_room(@room_1, @song_1)
+    @venue.reset_room(@room_1)
+    assert_equal([], @room_1.get_guests)
+    assert_equal([], @room_1.get_songs)
+  end
+
+  def test_can_get_room_till
+    assert_equal(500, @room_1.room_till)
+  end
+
+  def test_can_move_cash_from_room_till_to_venue_till
+    @venue.get_room_cash(@room_1, 300)
+    assert_equal(1300, @venue.venue_till)
+    assert_equal(200, @room_1.room_till)
   end
 
 end

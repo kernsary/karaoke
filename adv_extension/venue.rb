@@ -49,4 +49,13 @@ class Venue
     room.check_guest_out(guest)
   end
 
+  def reset_room(room)
+    room.reset
+  end
+
+  def get_room_cash(room, amount)
+    room.room_till -= amount
+    @venue_till += amount
+  end
+
 end

@@ -1,6 +1,8 @@
 class Room
 
-  attr_reader :name, :capacity, :room_till
+  attr_reader :name, :capacity
+
+  attr_accessor :room_till
 
   def initialize(name, capacity, drinks, room_till)
 
@@ -41,7 +43,7 @@ class Room
     return get_guests.count >= @capacity
   end
 
-  def reset_room
+  def reset
     @room_songs = []
     @room_guests = []
   end

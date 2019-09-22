@@ -86,7 +86,7 @@ class RoomTest < MiniTest::Test
   end
 
   def test_can_reset_room
-    @room_1.reset_room
+    @room_1.reset
     assert_equal([], @room_1.get_songs)
     assert_equal([], @room_1.get_guests)
   end
@@ -115,6 +115,16 @@ class RoomTest < MiniTest::Test
     assert_equal("Sorry, you don't have enough money.", @room_1.guest_wants_drink(poor_guest, @drink_1))
     assert_equal(3, poor_guest.wallet)
     assert_equal(500, @room_1.room_till)
+  end
+
+  def test_can_add_to_room_till
+    @room_1.room_till += 100
+    assert_equal(600, @room_1.room_till)
+  end
+
+  def test_can_subtract_from_room_till
+    @room_1.room_till -= 100
+    assert_equal(400, @room_1.room_till)
   end
 
 end
