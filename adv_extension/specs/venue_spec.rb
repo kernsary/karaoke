@@ -3,15 +3,18 @@ require('minitest/rg')
 require_relative('../venue.rb')
 require_relative('../room.rb')
 require_relative('../guest.rb')
+require_relative('../song.rb')
 require_relative('../drink.rb')
 
 class VenueTest < MiniTest::Test
 
   def setup
 
-    @song_1 = "Movin' On Up"
-    @song_2 = "Song 2"
-    @song_3 = "My Way"
+    @song_1 = Song.new("Movin' On Up")
+    @song_2 = Song.new("Song 2")
+    @song_3 = Song.new("My Way")
+
+    @grotesque_song = Song.new("Galway Girl")
 
     @venue_songs_1 = [@song_1, @song_2]
 
@@ -72,6 +75,12 @@ class VenueTest < MiniTest::Test
     assert_equal(1, @room_1.get_songs.count)
   end
 
+  def test_can_remove_song_from_room
+    @venue.add_song_to_room(@room_1, @song_1)
+    @venue.remove_song_from_room(@room_1, @song_1)
+    assert_equal(0, @room_1.get_songs.count)
+  end
+
   def test_can_check_guest_into_room__room_has_space_and_guest_has_money
     @venue.check_guest_into_room(@guest_1, @room_1)
     assert_equal(1, @room_1.get_guests.count)
@@ -114,6 +123,21 @@ class VenueTest < MiniTest::Test
     @venue.get_room_cash(@room_1, 300)
     assert_equal(1300, @venue.venue_till)
     assert_equal(200, @room_1.room_till)
+  end
+
+  def test_can_get_room_songs
+    @venue.add_song_to_room(@room_1, @song_1)
+    assert_equal([@song_1], @venue.get_room_songs(@room_1))
+  end
+
+  def test_ban_song
+    @venue.add_song_to_list(@grotesque_song)
+    @venue.add_song_to_room(@room_1, @grotesque_song)
+    @venue.add_song_to_room(@room_2, @grotesque_song)
+    @venue.ban_song(@grotesque_song)
+    assert_equal(2, @venue.get_songs.count)
+    assert_equal([], @room_1.get_songs)
+    assert_equal([], @room_2.get_songs)
   end
 
 end

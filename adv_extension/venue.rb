@@ -10,6 +10,7 @@ class Venue
     @entrance_charge = entrance_charge
     @venue_till = venue_till
     @guests = []
+    @banned_songs = []
 
   end
 
@@ -31,6 +32,10 @@ class Venue
 
   def add_song_to_room(room, song)
     room.add_song(song)
+  end
+
+  def remove_song_from_room(room, song)
+    room.remove_song(song)
   end
 
   def check_guest_into_room(guest, room)
@@ -56,6 +61,17 @@ class Venue
   def get_room_cash(room, amount)
     room.room_till -= amount
     @venue_till += amount
+  end
+
+  def get_room_songs(room)
+    return room.get_songs
+  end
+
+  def ban_song(song)
+      @venue_songs.delete(song)
+    @rooms.each do |room|
+      remove_song_from_room(room, song)
+    end
   end
 
 end
