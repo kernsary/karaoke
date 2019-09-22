@@ -87,4 +87,10 @@ class VenueTest < MiniTest::Test
     assert_equal("Sorry, Sinatra is full.", @venue.check_guest_into_room(@guest_5, @room_1))
   end
 
+  def test_can_check_guest_out_of_room
+    @venue.check_guest_into_room(@guest_1, @room_1)
+    @venue.check_guest_out_of_room(@guest_1, @room_1)
+    assert_equal(0, @room_1.get_guests.count)
+  end
+
 end

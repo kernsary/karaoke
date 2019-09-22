@@ -45,4 +45,8 @@ class Venue
     guest.guest_pays(@entrance_charge)
   end
 
+  def check_guest_out_of_room(guest, room)
+    room.check_guest_out(guest)
+  end
+
 end
