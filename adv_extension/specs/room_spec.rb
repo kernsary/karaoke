@@ -14,10 +14,11 @@ class RoomTest < MiniTest::Test
 
     @venue_songs = [@song_1, @song_2, @song_3]
 
-    @guest_1 = Guest.new("Frank")
-    @guest_2 = Guest.new("Jodie")
-    @guest_3 = Guest.new("Paul")
-    @guest_4 = Guest.new("Julianne")
+    @guest_1 = Guest.new("Frank", 100, "My Way")
+    @guest_2 = Guest.new("Jodie", 80, "My Way")
+    @guest_3 = Guest.new("Paul", 80, "I Will Survive")
+    @guest_4 = Guest.new("Julianne", 120, "I Will Survive")
+    @guest_5 = Guest.new("Suzanne", 60, "Galway Girl")
 
     @guests = [@guest_1, @guest_2, @guest_3]
 
@@ -74,6 +75,17 @@ class RoomTest < MiniTest::Test
     @room_1.reset_room
     assert_equal([], @room_1.get_songs)
     assert_equal([], @room_1.get_guests)
+  end
+
+  def test_fav_songs_response
+    @room_1.check_guest_in(@guest_1)
+    @room_1.check_guest_in(@guest_2)
+    @room_1.check_guest_in(@guest_3)
+    @room_1.add_song(@song_3)
+    @room_1.fav_songs_response
+    assert(@guest_1.cheers)
+    assert(@guest_2.cheers)
+    refute(@guest_3.cheers)
   end
 
 

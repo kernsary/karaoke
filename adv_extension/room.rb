@@ -40,4 +40,13 @@ class Room
     @room_guests = []
   end
 
+  def fav_songs_response
+    song_titles = @room_songs.map{|song| song.title}
+    @room_guests.each do |guest|
+      if song_titles.include?(guest.fav_song)
+        guest.guest_cheers
+      end
+    end
+  end
+
 end

@@ -14,11 +14,11 @@ class VenueTest < MiniTest::Test
 
     @venue_songs_1 = [@song_1, @song_2]
 
-    @guest_1 = Guest.new("Frank", 100)
-    @guest_2 = Guest.new("Jodie", 80)
-    @guest_3 = Guest.new("Paul", 80)
-    @guest_4 = Guest.new("Julianne", 120)
-    @guest_5 = Guest.new("Suzanne", 60)
+    @guest_1 = Guest.new("Frank", 100, "My Way")
+    @guest_2 = Guest.new("Jodie", 80, "My Way")
+    @guest_3 = Guest.new("Paul", 80, "I Will Survive")
+    @guest_4 = Guest.new("Julianne", 120, "I Will Survive")
+    @guest_5 = Guest.new("Suzanne", 60, "Galway Girl")
 
     @guests = [@guest_1, @guest_2, @guest_3]
 

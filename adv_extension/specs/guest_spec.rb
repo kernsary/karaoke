@@ -27,6 +27,11 @@ class GuestTest < MiniTest::Test
     assert_equal("My Way", @guest_1.fav_song)
   end
 
+  def test_cheers
+    @guest_1.guest_cheers
+    assert(@guest_1.cheers)
+  end
+
   def test_guest_can_cheer
     assert_equal("Ya dancer!", @guest_1.guest_cheers)
   end
