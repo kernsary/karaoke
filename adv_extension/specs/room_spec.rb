@@ -45,8 +45,8 @@ class RoomTest < MiniTest::Test
     assert_equal(@drinks, @room_1.get_drinks)
   end
 
-  def test_get_till
-    assert_equal(500, @room_1.till)
+  def test_get_room_till
+    assert_equal(500, @room_1.room_till)
   end
 
   def test_get_songs
@@ -102,12 +102,19 @@ class RoomTest < MiniTest::Test
     refute(@guest_3.cheers)
   end
 
-  def test_guest_can_buy_drink__enough_money
+  def test_guest_wants_drink__enough_money
     @room_1.check_guest_in(@guest_1)
     @room_1.guest_wants_drink(@guest_1, @drink_1)
     assert_equal(95, @guest_1.wallet)
+    assert_equal(505, @room_1.room_till)
   end
 
-
+  def test_guest_wants_drink__not_enough_money
+    poor_guest = Guest.new("Mary", 3, "I Will Survive")
+    @room_1.check_guest_in(poor_guest)
+    assert_equal("Sorry, you don't have enough money.", @room_1.guest_wants_drink(poor_guest, @drink_1))
+    assert_equal(3, poor_guest.wallet)
+    assert_equal(500, @room_1.room_till)
+  end
 
 end
